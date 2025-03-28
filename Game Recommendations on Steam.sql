@@ -58,3 +58,32 @@ Growth AS (
     FROM MonthlyReviews
 )
 SELECT * FROM Growth ORDER BY review_year DESC, review_month DESC;
+
+--7. Tìm người dùng chơi game lâu nhất nhưng ít đánh giá nhất (game thủ "im lặng")
+SELECT r.user_id, SUM(r.hours) AS total_hours_played, COUNT(r.review_id) AS total_reviews
+FROM RECOMMENDATIONS r
+GROUP BY r.user_id
+HAVING COUNT(r.review_id) < 5  -- Ít hơn 5 đánh giá
+ORDER BY total_hours_played DESC
+LIMIT 10;
+
+--8. Tìm mối quan hệ giữa giá game và số giờ chơi trung bình
+SELECT 
+    CASE 
+        WHEN price_final = 0 THEN 'Free'
+        WHEN price_final BETWEEN 0.01 AND 10 THEN 'Cheap ($0.01 - $10)'
+        WHEN price_final BETWEEN 10.01 AND 30 THEN 'Mid-range ($10.01 - $30)'
+        WHEN price_final > 30 THEN 'Expensive ($30+)'
+    END AS price_category,
+    AVG(r.hours) AS avg_playtime
+FROM GAMES g
+JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
+GROUP BY 
+    CASE 
+        WHEN price_final = 0 THEN 'Free'
+        WHEN price_final BETWEEN 0.01 AND 10 THEN 'Cheap ($0.01 - $10)'
+        WHEN price_final BETWEEN 10.01 AND 30 THEN 'Mid-range ($10.01 - $30)'
+        WHEN price_final > 30 THEN 'Expensive ($30+)'
+    END
+ORDER BY avg_playtime DESC;
+
