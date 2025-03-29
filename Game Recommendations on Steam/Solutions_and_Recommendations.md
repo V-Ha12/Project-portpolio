@@ -1,12 +1,14 @@
 # Business questions and Answers:
 
-**1. Which games are the most popular based on the number of reviews?
+**1. Which games are the most popular based on the number of reviews?**
+````sql
 SELECT g.title, COUNT(r.review_id) AS total_reviews
 FROM GAMES g
 JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
 GROUP BY g.title
 ORDER BY total_reviews DESC
 LIMIT 10;
+````
 
 --2. Which game has the biggest discount?
 SELECT title, price_original, price_final, discount
