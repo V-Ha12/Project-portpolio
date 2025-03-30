@@ -2,17 +2,19 @@
 
 **1. Which games are the most popular based on the number of reviews?**
 ````sql
-SELECT g.title, COUNT(r.review_id) AS total_reviews
+SELECT TOP 10 
+    g.title, 
+    COUNT(r.review_id) AS total_reviews, 
+    g.price_final
 FROM GAMES g
 JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
-GROUP BY g.title
-ORDER BY total_reviews DESC
-LIMIT 10;
+GROUP BY g.title, g.price_final
+ORDER BY total_reviews DESC;
 ````
 - Key Questions to Address:
     Does the number of reviews truly reflect a game's popularity?
 
-    Do games with more reviews generate higher revenue, or do free-to-play games simply attract more reviews?
+    Do games with more reviews generate higher revenue?
 
 
 **2. Which game is supported on the most operating systems?**
