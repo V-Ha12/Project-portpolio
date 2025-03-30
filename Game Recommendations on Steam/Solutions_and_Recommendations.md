@@ -30,6 +30,9 @@ ORDER BY total_reviews DESC;
 
   Do games with more reviews generate higher revenue?
 
+- Key Questions to Address: Does the number of reviews truly reflect a game's popularity?  
+  
+Do games with more reviews generate higher revenue?
 **2. Which game is supported on the most operating systems?**
 ````sql
 SELECT TOP 10 title,
