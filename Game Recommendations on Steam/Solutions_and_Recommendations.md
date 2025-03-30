@@ -302,5 +302,5 @@ ORDER BY avg_playtime DESC;
 |Free|6.425806|
 
 - Key Questions to Address:
-
+    Do higher-priced games have a higher average playtime?
 
