@@ -25,15 +25,15 @@ ORDER BY total_reviews DESC;
 |Grimtale Island|16|2.99|
 |Battle Bruise 2|14|4.99|
 
-- Key Questions to Address:
+_**- Key Questions to Address:**_
 
   Does the number of reviews truly reflect a game's popularity? Do games with more reviews generate higher revenue?
   
 --> The number of reviews often reflects a game's popularity and can influence revenue, but it is not always an absolute indicator. For example, Orwell: Keeping an Eye On You has 11,225 reviews and an estimated revenue of ~$112K. In contrast, Imp of the Sun, despite having a higher price of $19.99, has only 34 reviews, resulting in an estimated revenue of just ~$680. This suggests that while review count can be a strong signal of popularity, other factors such as pricing, marketing, and audience reach also play a crucial role in a game's financial success.
 
-- Suggestion:
+_**- Suggestion:**_
 
-  + Games with few reviews and high prices, like Imp of the Sun, should participate in major discount events (e.g., Steam Summer Sale, Winter Sale) to attract more players. Applying deep discounts (50% - 70%) early on can help increase review volume and visibility.
+  + Games with few reviews and high prices, like _Imp of the Sun_, should participate in major discount events (e.g., Steam Summer Sale, Winter Sale) to attract more players. Applying deep discounts (50% - 70%) early on can help increase review volume and visibility.
 
   + Creating a Discord group or engaging in communities on Reddit and Steam forums can encourage player discussions and boost engagement.
 
@@ -60,11 +60,16 @@ ORDER BY total_platforms DESC;
 |Noitu Love 2: Devolution|1|93|
 |Freddy Spaghetti|1|90|
 
-- Key Questions to Address:
+_**- Key Questions to Address:**_
     Do games that support multiple platforms sell better?
 
+--> The level of multi-platform support can influence game sales, but it is not the deciding factor. Orwell: _Keeping an Eye On You_ (available on three platforms) has the highest revenue at $112K and a 91% positive review rate, suggesting that expanding platform availability can boost sales. However, _Bob Help Them_ (available on only one platform but with a 100% positive review rate) has extremely low revenue at just $27. This indicates that product quality and pricing strategy play a more crucial role than the number of supported platforms.
 
+_**- Suggestion:**_
 
+  + Games with high commercial potential (Orwell: _Keeping an Eye On You_, _Singularity: Tactics Arena_) should be expanded to additional platforms such as consoles (PlayStation, Xbox) or mobile to reach a broader audience.
+
+  + However, titles with complex gameplay mechanics or interfaces optimized for PC (Field of Glory II: _Legions Triumphant_) may not perform well on consoles or mobile due to control and UI limitations.
 
 **3. Which games have a high player count but a low positive review rate? What factors (e.g., playtime) influence game review quality?**
 ````sql
@@ -94,9 +99,17 @@ ORDER BY total_reviews DESC;
 |Noitu Love 2: Devolution|1|93|
 |Freddy Spaghetti|1|90|
 
-- Slutions
+_**- Slutions:**_
+
 Identify games in the database with a high number of reviews but low ratings, then analyze potential factors such as playtime to understand the underlying reasons.
---> 
+
+--> The games with the lowest positive review rates are Trainz Plus (70%) and Talisman - The Reaper Expansion (84%). Although both titles have a higher number of reviews compared to many other games, their ratings are significantly lower than the average (most other games have 90%+ positive ratings). This suggests that these games may have issues affecting the player experience, leading to lower review scores despite attracting a substantial number of purchases and active players.
+
+_**- Suggestion:**_
+
+  + Analyze average playtime data to determine when players tend to drop off and adjust game content to improve retention.
+
+  + Review negative Steam reviews to identify common issues faced by players, allowing for targeted improvements and better overall player experience.
 
 **4. What is the trend of game reviews over time?**
 ````sql
@@ -253,8 +266,32 @@ SELECT * FROM Growth ORDER BY review_year DESC, review_month DESC;
 |2012|5|2|13|-84.615384615384|
 |2012|4|13|NULL|NULL|
 
-- Key Questions to Address:
+_**- Key Questions to Address:**_
     Is the review trend related to the release of additional content (DLCs or updates)?
+
+**Review Trend Across Different Periods**
+The data from Table 4 reveals significant fluctuations in the number of monthly reviews, with certain periods experiencing sharp increases and others showing substantial declines. Key growth spikes include:
+
++ October 2019: Reviews surged from 98 to 412 (+320.4%).
+
++ June 2017: Reviews increased from 66 to 311 (+371.2%).
+
++ August 2018: A major spike from 104 to 788 (+657.7%).
+
+**Correlation with DLCs/Updates**
+Periods of review growth are often linked to DLC releases, major updates, or attractive discount programs:
+
++ If a DLC introduces compelling content or significantly enhances gameplay, it can drive players back, leading to a surge in reviews.
+
++ Conversely, if an update fails to meet expectations or negatively alters game mechanics, it may result in a drop in reviews.
+
++ Major discount events can also bring in a wave of new players, triggering a sharp increase in review activity.
+
+_**- Suggestion:**_
+
+  + Plan DLC releases and updates to coincide with major events (e.g., gaming festivals, seasonal events, or Steam Sales) to maximize engagement from both new and returning players.
+
+  + Develop a content roadmap that alternates between free updates and paid DLCs to maintain long-term player retention.
 
 **5. Which user has the longest playtime but the fewest reviews (a "silent" gamer)?**
 ````sql
@@ -279,10 +316,20 @@ LIMIT 10;
 |13097370|453.6|1|
 |1039273|415.4|1|
 
-- Key Questions to Address:
+_**- Key Questions to Address:**_
     Why do some players spend a lot of time in a game but leave no reviews?
     Could these players be loyal but less engaged in community interactions?
+--> The data from Table 5 suggests that these players may be loyal gamers who either leave only one review or none at all. Possible reasons include:
 
++ Lack of reviewing habits: Many gamers do not feel the need to leave a review unless they have an exceptionally positive or negative experience.
+
++ Prioritizing gameplay over feedback: Some players enjoy the game but are not interested in participating in discussions or providing feedback.
+
+_**- Suggestion:**_
+
+  + Integrate a subtle feedback system: Add an in-game prompt like "Do you enjoy this game?" to make it easier for players to leave feedback without exiting the game.
+
+  + Timing review reminders effectively: Display review prompts after players reach key milestones or accumulate a certain number of gameplay hours.
 
 **6. Is there any notable relationship between game price and average playtime?**
 ````sql
@@ -312,6 +359,17 @@ ORDER BY avg_playtime DESC;
 |Mid-range ($10.01 - $30)|6.705882|
 |Free|6.425806|
 
-- Key Questions to Address:
+_**- Key Questions to Address:**_
+
     Do higher-priced games have a higher average playtime?
+
+--> Data from Table 6 indicates that cheaper games tend to have the highest average playtime, whereas more expensive games generally have lower playtime. This could be because players are more likely to buy multiple cheap games without much consideration. On the other hand, pricier games may focus on delivering a high-quality but shorter experience rather than extending gameplay hours. Free games attract a large number of players but may struggle to retain them due to a lack of long-term engagement incentives or monetization models (such as microtransactions) that negatively impact the experience.
+
+_**- Suggestion:**_
+
+  + Cheap games can leverage DLCs or microtransactions to increase revenue from dedicated players.
+
+  + Mid-priced games should enhance replayability to extend average playtime.
+
+  + Free games should optimize player retention by introducing events, challenges, or rewards to maintain engagement.
 
