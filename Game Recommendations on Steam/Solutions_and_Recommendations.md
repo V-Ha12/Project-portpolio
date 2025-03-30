@@ -11,6 +11,10 @@ JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
 GROUP BY g.title, g.price_final
 ORDER BY total_reviews DESC;
 ````
+|Windows_Games|Mac_Games|Linux_Games|
+|---|---|---|
+|20|4|1|
+
 - Key Questions to Address:
     Does the number of reviews truly reflect a game's popularity?
 
