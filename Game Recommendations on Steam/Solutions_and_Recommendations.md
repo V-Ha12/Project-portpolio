@@ -27,10 +27,15 @@ ORDER BY total_reviews DESC;
 
 - Key Questions to Address:
 
-  Does the number of reviews truly reflect a game's popularity?
+  Does the number of reviews truly reflect a game's popularity? Do games with more reviews generate higher revenue?
+  
+--> The number of reviews often reflects a game's popularity and can influence revenue, but it is not always an absolute indicator. For example, Orwell: Keeping an Eye On You has 11,225 reviews and an estimated revenue of ~$112K. In contrast, Imp of the Sun, despite having a higher price of $19.99, has only 34 reviews, resulting in an estimated revenue of just ~$680. This suggests that while review count can be a strong signal of popularity, other factors such as pricing, marketing, and audience reach also play a crucial role in a game's financial success.
 
-  Do games with more reviews generate higher revenue?
+- Suggestion:
 
+  + Games with few reviews and high prices, like Imp of the Sun, should participate in major discount events (e.g., Steam Summer Sale, Winter Sale) to attract more players. Applying deep discounts (50% - 70%) early on can help increase review volume and visibility.
+
+  + Creating a Discord group or engaging in communities on Reddit and Steam forums can encourage player discussions and boost engagement.
 
 **2. Which game is supported on the most operating systems?**
 ````sql
