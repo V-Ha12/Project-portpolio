@@ -11,9 +11,18 @@ JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
 GROUP BY g.title, g.price_final
 ORDER BY total_reviews DESC;
 ````
-|Windows_Games|Mac_Games|Linux_Games|
+|title|total_reviews|price_final|
 |---|---|---|
-|20|4|1|
+|Orwell: Keeping an Eye On You|11225|9.99|
+|Noitu Love 2: Devolution|297|4.99|
+|????|93|0.00|
+|Imp of the Sun|34|19.99|
+|Them - The Summoning|32|2.99|
+|Freddy Spaghetti|27|4.99|
+|Bob Help Them|23|1.19|
+|Ossuary|17|9.99|
+|Grimtale Island|16|2.99|
+|Battle Bruise 2|14|4.99|
 
 - Key Questions to Address:
     Does the number of reviews truly reflect a game's popularity?
@@ -30,6 +39,19 @@ SELECT TOP 10 title,
 FROM GAMES
 ORDER BY total_platforms DESC;
 ````
+|title|total_platforms|positive_ratio|
+|---|---|---|
+|Orwell: Keeping an Eye On You|3|91|
+|Singularity: Tactics Arena|2|89|
+|Talisman - The Reaper Expansion|2|84|
+|Trainz Plus|2|70|
+|Field of Glory II: Legions Triumphant|1|100|
+|Bob Help Them|1|100|
+|Partum Artifex|1|97|
+|LOUD: My Road to Fame|1|94|
+|Noitu Love 2: Devolution|1|93|
+|Freddy Spaghetti|1|90|
+
 - Key Questions to Address:
     Do games that support multiple platforms sell better?
 
@@ -50,6 +72,19 @@ GROUP BY g.title, g.positive_ratio
 HAVING COUNT(r.review_id) > 30 -- Games with at least 30 reviews
 ORDER BY total_reviews DESC;
 ````
+|title|total_platforms|positive_ratio|
+|---|---|---|
+|Orwell: Keeping an Eye On You|3|91|
+|Singularity: Tactics Arena|2|89|
+|Talisman - The Reaper Expansion|2|84|
+|Trainz Plus|2|70|
+|Field of Glory II: Legions Triumphant|1|100|
+|Bob Help Them|1|100|
+|Partum Artifex|1|97|
+|LOUD: My Road to Fame|1|94|
+|Noitu Love 2: Devolution|1|93|
+|Freddy Spaghetti|1|90|
+
 - Slutions
 Identify games in the database with a high number of reviews but low ratings, then analyze potential factors such as playtime to understand the underlying reasons.
 --> 
@@ -76,7 +111,6 @@ Growth AS (
 )
 SELECT * FROM Growth ORDER BY review_year DESC, review_month DESC;
 ````
-Xu hướng review có liên quan đến phát hành DLC (nội dung bổ sung) không?
 
 |review_year|review_month|total_reviews|previous_month_reviews|growth_rate|
 |---|---|---|---|---|
@@ -210,6 +244,8 @@ Xu hướng review có liên quan đến phát hành DLC (nội dung bổ sung) 
 |2012|5|2|13|-84.615384615384|
 |2012|4|13|NULL|NULL|
 
+- Key Questions to Address:
+    Is the review trend related to the release of additional content (DLCs or updates)?
 
 **5. Which user has the longest playtime but the fewest reviews (a "silent" gamer)?**
 ````sql
@@ -220,6 +256,22 @@ HAVING COUNT(r.review_id) < 5  -- Ít hơn 5 đánh giá
 ORDER BY total_hours_played DESC
 LIMIT 10;
 ````
+|user_id|total_hours_played|total_reviews|
+|---|---|---|
+|7891567|891.8|1|
+|13143741|784.0|1|
+|10177840|774.5|1|
+|7722080|773.8|1|
+|12633337|744.2|1|
+|12922824|636.3|1|
+|1954717|572.2|1|
+|10687032|508.7|1|
+|13097370|453.6|1|
+|1039273|415.4|1|
+
+- Key Questions to Address:
+    Why do some players spend a lot of time in a game but leave no reviews?
+    Could these players be loyal but less engaged in community interactions?
 
 
 **6. Is there any notable relationship between game price and average playtime?**
@@ -243,6 +295,12 @@ GROUP BY
     END
 ORDER BY avg_playtime DESC;
 ````
+|price_category|avg_playtime|
+|---|---|
+|Cheap ($0.01 - $10)|8.173152|
+|Mid-range ($10.01 - $30)|6.705882|
+|Free|6.425806|
 
+- Key Questions to Address:
 
 
