@@ -11,6 +11,7 @@ JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
 GROUP BY g.title, g.price_final
 ORDER BY total_reviews DESC;
 ````
+**Results Table**
 |title|total_reviews|price_final|
 |---|---|---|
 |Orwell: Keeping an Eye On You|11225|9.99|
