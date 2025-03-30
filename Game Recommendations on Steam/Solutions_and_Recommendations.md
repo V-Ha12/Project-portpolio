@@ -11,7 +11,7 @@ JOIN RECOMMENDATIONS r ON g.app_id = r.app_id
 GROUP BY g.title, g.price_final
 ORDER BY total_reviews DESC;
 ````
-**Results Table**
+**Results Table 1**
 |title|total_reviews|price_final|
 |---|---|---|
 |Orwell: Keeping an Eye On You|11225|9.99|
@@ -40,6 +40,7 @@ SELECT TOP 10 title,
 FROM GAMES
 ORDER BY total_platforms DESC;
 ````
+**Results Table 2**
 |title|total_platforms|positive_ratio|
 |---|---|---|
 |Orwell: Keeping an Eye On You|3|91|
@@ -73,6 +74,7 @@ GROUP BY g.title, g.positive_ratio
 HAVING COUNT(r.review_id) > 30 -- Games with at least 30 reviews
 ORDER BY total_reviews DESC;
 ````
+**Results Table 3**
 |title|total_platforms|positive_ratio|
 |---|---|---|
 |Orwell: Keeping an Eye On You|3|91|
@@ -112,7 +114,7 @@ Growth AS (
 )
 SELECT * FROM Growth ORDER BY review_year DESC, review_month DESC;
 ````
-
+**Results Table 4**
 |review_year|review_month|total_reviews|previous_month_reviews|growth_rate|
 |---|---|---|---|---|
 |2022|12|51|51|0.000000000000|
@@ -257,6 +259,7 @@ HAVING COUNT(r.review_id) < 5  -- Ít hơn 5 đánh giá
 ORDER BY total_hours_played DESC
 LIMIT 10;
 ````
+**Results Table 5**
 |user_id|total_hours_played|total_reviews|
 |---|---|---|
 |7891567|891.8|1|
@@ -296,6 +299,7 @@ GROUP BY
     END
 ORDER BY avg_playtime DESC;
 ````
+**Results Table 6**
 |price_category|avg_playtime|
 |---|---|
 |Cheap ($0.01 - $10)|8.173152|
