@@ -47,19 +47,17 @@ SELECT
 FROM GAMES;
 
 --3. Top 10 games with the highest total playtime before review.
-SELECT G.title, SUM(R.hours) AS total_hours
+SELECT TOP 10 G.title, SUM(R.hours) AS total_hours
 FROM RECOMMENDATIONS R
 JOIN GAMES G ON R.app_id = G.app_id
 GROUP BY G.title
-ORDER BY total_hours DESC
-LIMIT 10;
+ORDER BY total_hours DESC;
 
 --4. Identify the users with the most "Helpful" reviews.
-SELECT user_id, SUM(helpful) AS total_helpful_votes
+SELECT TOP 10 user_id, SUM(helpful) AS total_helpful_votes
 FROM RECOMMENDATIONS
 GROUP BY user_id
-ORDER BY total_helpful_votes DESC
-LIMIT 10;
+ORDER BY total_helpful_votes DESC;
 
 --5. Calculate the average number of games reviewed per user.
 SELECT 
